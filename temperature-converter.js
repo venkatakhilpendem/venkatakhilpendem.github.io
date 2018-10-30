@@ -1,23 +1,21 @@
-var lastEdited = "celsius";  // initialize the lastEdited flag to any of the three input fields.
+var givenvalue = "celsius";  
 
-//button listeners
 document.getElementById("submit").onclick = convert;
 document.getElementById("reset").onclick = reset;
 
-//picks up on if and when an input field changes, then sets the lastEdited flag to the input field that was changed.
 document.getElementById("celsius").onchange = function() {
-  lastEdited = "celsius";
+  givenvalue = "celsius";
 };
 document.getElementById("fahrenheit").onchange = function() {
-  lastEdited = "fahrenheit";
+  givenvalue = "fahrenheit";
 };
 document.getElementById("kelvin").onchange = function() {
-  lastEdited = "kelvin";
+  givenvalue = "kelvin";
 };
 
 function convert(temp) {
 
-  //initialize local variables
+  
   var celsius = document.getElementById("celsius").value;
   celsius = parseFloat(celsius);
 
@@ -27,43 +25,43 @@ function convert(temp) {
   var kelvin = document.getElementById("kelvin").value;
   kelvin = parseFloat(kelvin);
 
-  //temp values
-  var conversionC;
-  var conversionF;
-  var conversionK;
+  
+  var convertsCelsius;
+  var convertsFahrenheit;
+  var convertsKelvin;
 
-  //if the celsius field changes, convert the fahrenheit and kelvin values
-  if (lastEdited === "celsius") {
-    conversionF = celsius * 9 / 5 + 32;
-    conversionK = celsius + 273;
-    //round the converted fahrenheit and kelvin values
-    document.getElementById("fahrenheit").value = Math.round(conversionF);
-    document.getElementById("kelvin").value = Math.round(conversionK);
+  
+  if (givenvalue === "celsius") {
+    convertsFahrenheit = celsius * 9 / 5 + 32;
+    convertsKelvin = celsius + 273;
+   
+    document.getElementById("fahrenheit").value = Math.round(convertsFahrenheit);
+    document.getElementById("kelvin").value = Math.round(convertsKelvin);
   } 
-    //if the fahrenheit field changes, convert the celsius and kelvin values
-    else if (lastEdited === "fahrenheit") {
-    conversionC = (fahrenheit - 32) * 5 / 9;
-    conversionK = conversionC + 273;
-    //round the converted celsius and kelvin values
-    document.getElementById("celsius").value = Math.round(conversionC);
-    document.getElementById("kelvin").value = Math.round(conversionK);
+    
+    else if (givenvalue === "fahrenheit") {
+    convertsCelsius = (fahrenheit - 32) * 5 / 9;
+    convertsKelvin = convertsCelsius + 273;
+    
+    document.getElementById("celsius").value = Math.round(convertsCelsius);
+    document.getElementById("kelvin").value = Math.round(convertsKelvin);
   } 
-    //if the kelvin field changes, convert the celsius and fahrenheit values
-    else if (lastEdited === "kelvin") {
-    conversionC = kelvin - 273;
-    conversionF = conversionC * 9 / 5 + 32;
-    //round the converted celsius and fahrenheit values
-    document.getElementById("celsius").value = Math.round(conversionC);
-    document.getElementById("fahrenheit").value = Math.round(conversionF);
+    
+    else if (givenvalue === "kelvin") {
+    convertsCelsius = kelvin - 273;
+    convertsFahrenheit = convertsCelsius * 9 / 5 + 32;
+    
+    document.getElementById("celsius").value = Math.round(convertsCelsius);
+    document.getElementById("fahrenheit").value = Math.round(convertsFahrenheit);
   }
 
-  //get the current conversion temp values and store them in the input fields
-  document.getElementById("celsius").innerHTML = conversionC;
-  document.getElementById("fahrenheit").innerHTML = conversionF;
-  document.getElementById("kelvin").innerHTML = conversionK;
+  
+  document.getElementById("celsius").innerHTML = convertsCelsius;
+  document.getElementById("fahrenheit").innerHTML = convertsFahrenheit;
+  document.getElementById("kelvin").innerHTML = convertsKelvin;
 }
 
-//reset function for the reset button to reset all current values
+
 function reset() {
   document.getElementById("celsius").value = 0;
   document.getElementById("fahrenheit").value = 0;
